@@ -12,12 +12,17 @@ const connect = function() {
   conn.on("connect", () =>{
     console.log("Successfully connected");
     conn.write("Name: Mar")
-  })
-  conn.on("moveUp", () =>{
-    console.log("Move Up"),
-    conn.write("Move Up")
-  })
-  conn.on("close", () => {
+  });
+    conn.on("connect", () =>{
+      conn.write("Move: up")
+    });
+    conn.on("connect", () =>{
+      conn.write("Move: right")
+    });
+    conn.on("data", (data) => {  //recieve data from server
+      console.log("server output: ", data)
+    });
+    conn.on("close", () => {
     console.log("You ded cuz you idled");
   })
 
